@@ -2,21 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WelcomeScreen from '../WelcomeScreen/welcome-screen.jsx';
 
+const welcomeButtonHandler = () => console.log(`Кликнули на большую кнопку`);
 
-class App extends React.PureComponent {
+const App = (props) => {
 
-  render() {
-    const {errorValue} = this.props;
+  const {errorsValue} = props;
 
-    return (
-      <WelcomeScreen errorValue={errorValue}/>
-    );
-  }
-}
+  return (
+    <WelcomeScreen
+      errorsValue={errorsValue}
+      onWelcomeButtonClick={welcomeButtonHandler}
+    />
+  );
+};
 
 
 App.propTypes = {
-  errorValue: PropTypes.number.isRequired
+  errorsValue: PropTypes.number.isRequired
 };
 
 export default App;
