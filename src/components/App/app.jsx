@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WelcomeScreen from '../WelcomeScreen/welcome-screen.jsx';
 
-const welcomeButtonHandler = () => console.log(`Кликнули на большую кнопку`);
+const welcomeButtonHandler = () => {};
 
 const App = (props) => {
 
