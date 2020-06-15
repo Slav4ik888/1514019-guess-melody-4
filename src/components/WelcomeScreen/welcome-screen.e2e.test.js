@@ -14,7 +14,7 @@ describe(`WelcomeScreenComponent`, () => {
 
     const welcomeScreen = shallow(
         <WelcomeScreen
-          errorsCount={3}
+          errorsValue={3}
           onWelcomeButtonClick={onWelcomeButtonClick}
         />
     );
