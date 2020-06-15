@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App/app.jsx';
-
-let errorValue = 2;
+import {Settings} from "./consts/consts";
 
 
 ReactDOM.render(
-    <App errorValue={errorValue} />
+    <App errorsValue={Settings.ERRORS_ALL} />
     , document.getElementById(`root`));
