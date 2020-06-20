@@ -43,28 +43,27 @@ class App extends React.PureComponent {
       switch (question.type) {
         case GameType.ARTIST:
           return (
-            <QuestionArtist 
-              onAnswer={() => {
-                this.setState((prevState) => ({
-                  step: prevState.step + 1,
-                }));
-              }}
-              question={question}
+            <QuestionArtist onAnswer={() => {
+              this.setState((prevState) => ({
+                step: prevState.step + 1,
+              }));
+            }}
+            question={question}
             />
           );
         case GameType.GENRE:
           return (
-            <QuestionGenre 
-              onAnswer={() => {
-                this.setState((prevState) => ({
-                  step: prevState.step + 1,
-                }));
-              }}
-              question={question}
+            <QuestionGenre onAnswer={() => {
+              this.setState((prevState) => ({
+                step: prevState.step + 1,
+              }));
+            }}
+            question={question}
             />
-          )
+          );
       }
     }
+    return null;
   }
 
   render() {

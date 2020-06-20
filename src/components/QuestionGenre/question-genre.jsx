@@ -4,8 +4,7 @@ import {GameType} from "../../consts/consts.js";
 
 
 class QuestionGenre extends React.PureComponent {
-
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       userAnswers: [false, false, false, false],
@@ -15,7 +14,7 @@ class QuestionGenre extends React.PureComponent {
   render() {
     const {onAnswer, question} = this.props;
     const {userAnswers} = this.state;
-    const {answers, genre} = question;
+    const {answers} = question;
     return (
       <>
         <section className="game game--genre">
