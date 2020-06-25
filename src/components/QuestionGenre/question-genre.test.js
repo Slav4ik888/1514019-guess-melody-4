@@ -22,11 +22,17 @@ const question = {
 };
 
 const onAnswer = () => {};
+const onRenderPlayer = () => {};
+
 
 describe(`<App /> рендерит <QuestionGenre /> `, () => {
   it(`<App /> рендерит <QuestionGenre /> `, () => {
     const tree = renderer
-      .create(<QuestionGenre onAnswer={onAnswer} question={question}/>)
+      .create(<QuestionGenre
+        onAnswer={onAnswer}
+        question={question}
+        renderPlayer={onRenderPlayer}
+      />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

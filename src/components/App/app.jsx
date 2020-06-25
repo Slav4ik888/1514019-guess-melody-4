@@ -4,7 +4,12 @@ import PropTypes from 'prop-types';
 import WelcomeScreen from '../WelcomeScreen/welcome-screen.jsx';
 import QuestionArtist from '../QuestionArtist/question-artist.jsx';
 import QuestionGenre from '../QuestionGenre/question-genre.jsx';
-import {GameType} from "../../consts/consts.js";
+import {GameType} from '../../consts/consts.js';
+import GameScreen from '../GameScreen/game-screen.jsx';
+import withAudioPlayer from '../../hocs/with-audio-player.js';
+
+const QuestionGenreWrapped = withAudioPlayer(QuestionGenre);
+const QuestionArtistWrapped = withAudioPlayer(QuestionArtist);
 
 
 class App extends React.PureComponent {
@@ -43,23 +48,29 @@ class App extends React.PureComponent {
       switch (question.type) {
         case GameType.ARTIST:
           return (
-            <QuestionArtist onAnswer={() => {
-              this.setState((prevState) => ({
-                step: prevState.step + 1,
-              }));
-            }}
-            question={question}
-            />
+            <GameScreen type={question.type} >
+              <QuestionArtistWrapped
+                onAnswer={() => {
+                  this.setState((prevState) => ({
+                    step: prevState.step + 1,
+                  }));
+                }}
+                question={question}
+              />
+            </GameScreen>
           );
         case GameType.GENRE:
           return (
-            <QuestionGenre onAnswer={() => {
-              this.setState((prevState) => ({
-                step: prevState.step + 1,
-              }));
-            }}
-            question={question}
-            />
+            <GameScreen type={question.type} >
+              <QuestionGenreWrapped
+                onAnswer={() => {
+                  this.setState((prevState) => ({
+                    step: prevState.step + 1,
+                  }));
+                }}
+                question={question}
+              />
+            </GameScreen>
           );
       }
     }
@@ -77,10 +88,16 @@ class App extends React.PureComponent {
               {this._renderGameScreen()}
             </Route>
             <Route exact path="/artist">
-              <QuestionArtist onAnswer={() => {}} question={questions[1]}/>
+              <QuestionArtistWrapped
+                onAnswer={() => {}}
+                question={questions[1]}
+              />
             </Route>
             <Route exact path="/genre">
-              <QuestionGenre onAnswer={() => {}} question={questions[0]}/>
+              <QuestionGenreWrapped
+                onAnswer={() => {}}
+                question={questions[0]}
+              />
             </Route>
           </Switch>
         </BrowserRouter>

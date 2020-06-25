@@ -35,9 +35,11 @@ const mock = {
 it(`Когда ответы не отправляются, проверяем просто клик`, () => {
   const {question} = mock;
   const onAnswer = jest.fn();
+
   const genreQuestion = shallow(<QuestionGenre
     onAnswer={onAnswer}
     question={question}
+    renderPlayer={() => {}}
   />);
 
   const form = genreQuestion.find(`form`);
@@ -58,6 +60,7 @@ it(`Ответы пользователя передаются в коллбэк
   const genreQuestion = shallow(<QuestionGenre
     onAnswer={onAnswer}
     question={question}
+    renderPlayer={() => {}}
   />);
 
   const form = genreQuestion.find(`form`);

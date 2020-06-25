@@ -21,11 +21,17 @@ const question = {
 };
 
 const onAnswer = () => {};
+const onRenderPlayer = () => {};
+
 
 describe(`<App /> рендерит <QuestionArtist /> `, () => {
   it(`<App /> рендерит <QuestionArtist /> `, () => {
     const tree = renderer
-      .create(<QuestionArtist onAnswer={onAnswer} question={question}/>)
+      .create(<QuestionArtist
+        onAnswer={onAnswer}
+        question={question}
+        renderPlayer={onRenderPlayer}
+      />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

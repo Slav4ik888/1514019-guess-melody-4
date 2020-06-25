@@ -47,6 +47,8 @@ it(`Клик пользователя на ответ, должен вызват
   const screen = shallow(<QuestionArtist
     onAnswer={onAnswer}
     question={question}
+    renderPlayer={() => {}}
+
   />);
 
   const answerInputs = screen.find(`input`);
