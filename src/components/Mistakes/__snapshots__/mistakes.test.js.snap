@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Снёпшот <Mistakes /> <Mistakes /> count = 0 1`] = `
+<div
+  className="game__mistakes"
+/>
+`;
+
+exports[`Снёпшот <Mistakes /> <Mistakes /> count = 1 1`] = `
+<div
+  className="game__mistakes"
+>
+  <div
+    className="wrong"
+  />
+</div>
+`;
