@@ -4,35 +4,37 @@ const questions = [
   {
     type: `genre`,
     genre: `rock`,
+
     answers: [{
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+      src: `http://d.zaix.ru/e6zR.mp3`,
       genre: `rock`,
     }, {
       src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
       genre: `blues`,
     }, {
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `jazz`,
+      src: `http://d.zaix.ru/e6zR.mp3`,
+      genre: `rock`,
     }, {
       src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `rock`,
+      genre: `jazz  `,
     }],
-  }, {
+  },
+  {
     type: `artist`,
     song: {
-      artist: `Jim Beam`,
+      artist: `Slava Cesar`,
       src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
     },
     answers: [{
-      picture: `https://api.adorable.io/avatars/128/1`,
-      artist: `John Snow`,
+      picture: `https://api.adorable.io/avatars/128/A`,
+      artist: `Alla Petunya`,
     }, {
-      picture: `https://api.adorable.io/avatars/128/2`,
-      artist: `Jack Daniels`,
+      picture: `https://api.adorable.io/avatars/128/AB`,
+      artist: `Сергей Митькин`,
     }, {
-      picture: `https://api.adorable.io/avatars/128/3`,
-      artist: `Jim Beam`,
-    }],
+      picture: `https://api.adorable.io/avatars/128/AC`,
+      artist: `Розалинда Набельчик`,
+    }]
   }
 ];
 
@@ -94,7 +96,7 @@ describe(`Тестим Reducer`, () => {
     });
   });
 
-  it(`Reducer should incremennt current MIST by a given value`, () => {
+  it(`Reducer should incremennt current MIST 1 by a given value`, () => {
     expect(reducer({
       mistakes: 0,
       step: -1,
@@ -105,18 +107,23 @@ describe(`Тестим Reducer`, () => {
       mistakes: 1,
       step: -1,
     });
+  });
 
+  it(`Reducer should incremennt current MIST 2 by a given value`, () => {
     expect(reducer({
-      mistakes: 3,
-      step: 5,
+      mistakes: 0,
+      step: -1,
     }, {
       type: ActionType.INC_MIST,
       payload: 1,
     })).toEqual({
-      mistakes: 0,
+      mistakes: 1,
       step: -1,
     });
+  });
 
+
+  it(`Reducer should incremennt current MIST 3 by a given value`, () => {
     expect(reducer({
       mistakes: 0,
       step: -1,

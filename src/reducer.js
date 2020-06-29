@@ -66,7 +66,7 @@ const reducer = (state = initialState, action) => {
       const mistakes = state.mistakes + action.payload;
 
       if (mistakes >= state.maxMistakes) {
-        return extend({}, initialState);
+        return initialState;
       }
 
       return extend(state, {
