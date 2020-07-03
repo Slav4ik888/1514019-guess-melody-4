@@ -136,6 +136,47 @@ describe(`Тестим Reducer`, () => {
     });
 
   });
+
+  it(`Reducer should return default`, () => {
+    expect(reducer({
+      step: 5,
+      mistakes: 1,
+    }, {
+      type: ActionType.RESET,
+      payload: null,
+    })).toEqual({
+      step: 0,
+      mistakes: 0,
+      maxMistakes: 3,
+      questions,
+    });
+
+    expect(reducer({
+      step: 0,
+      mistakes: 0,
+    }, {
+      type: ActionType.RESET,
+      payload: null,
+    })).toEqual({
+      step: 0,
+      mistakes: 0,
+      maxMistakes: 3,
+      questions,
+    });
+
+    expect(reducer({
+      step: -1,
+      mistakes: 0,
+    }, {
+      type: ActionType.RESET,
+      payload: null,
+    })).toEqual({
+      step: 0,
+      mistakes: 0,
+      maxMistakes: 3,
+      questions,
+    });
+  });
 });
 
 describe(`Тестим ActionCreator`, () => {

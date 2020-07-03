@@ -12,6 +12,7 @@ const initialState = {
 const ActionType = {
   INC_MIST: `INCREMENT_MISTAKE`,
   INC_STEP: `INCREMENT_STEP`,
+  RESET: `RESET`,
 };
 
 const isArtistAnswerCorrect = (question, userAnswer) => {
@@ -45,7 +46,14 @@ const ActionCreator = {
       type: ActionType.INC_MIST,
       payload: answerIsCorrect ? 0 : 1,
     };
-  }
+  },
+
+  resetGame: () => {
+    return {
+      type: ActionType.RESET,
+      payload: null,
+    };
+  },
 };
 
 
@@ -71,6 +79,11 @@ const reducer = (state = initialState, action) => {
 
       return extend(state, {
         mistakes,
+      });
+
+    case ActionType.RESET:
+      return extend(initialState, {
+        step: 0,
       });
   }
   return state;
