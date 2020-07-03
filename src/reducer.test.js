@@ -298,4 +298,11 @@ describe(`Тестим ActionCreator`, () => {
     });
   });
 
+  it(`Action creator for reset game returns action with null payload`, () => {
+    expect(ActionCreator.resetGame())
+      .toEqual({
+        type: ActionType.RESET,
+        payload: null,
+      });
+  });
 });
