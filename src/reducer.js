@@ -60,25 +60,13 @@ const ActionCreator = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.INC_STEP:
-      const nextStep = state.step + action.payload;
-
-      if (nextStep >= state.questions.length) {
-        return extend({}, initialState);
-      }
-
       return extend(state, {
-        step: nextStep,
+        step: state.step + action.payload,
       });
 
     case ActionType.INC_MIST:
-      const mistakes = state.mistakes + action.payload;
-
-      if (mistakes >= state.maxMistakes) {
-        return initialState;
-      }
-
       return extend(state, {
-        mistakes,
+        mistakes: state.mistakes + action.payload
       });
 
     case ActionType.RESET:

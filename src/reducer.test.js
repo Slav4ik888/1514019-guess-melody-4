@@ -52,7 +52,6 @@ describe(`Тестим Reducer`, () => {
   it(`Reducer should incremennt current STEP by a given value`, () => {
     expect(reducer({
       mistakes: 0,
-      maxMistakes: 3,
       step: -1,
       questions,
     }, {
@@ -60,29 +59,12 @@ describe(`Тестим Reducer`, () => {
       payload: 1,
     })).toEqual({
       mistakes: 0,
-      maxMistakes: 3,
       step: 0,
       questions,
     });
 
     expect(reducer({
       mistakes: 0,
-      maxMistakes: 3,
-      step: 1,
-      questions,
-    }, {
-      type: ActionType.INC_STEP,
-      payload: 1,
-    })).toEqual({
-      mistakes: 0,
-      maxMistakes: 3,
-      step: -1,
-      questions,
-    });
-
-    expect(reducer({
-      mistakes: 0,
-      maxMistakes: 3,
       step: -1,
       questions,
     }, {
@@ -90,7 +72,6 @@ describe(`Тестим Reducer`, () => {
       payload: 0,
     })).toEqual({
       mistakes: 0,
-      maxMistakes: 3,
       step: -1,
       questions,
     });
