@@ -34,7 +34,7 @@ it(`Checks that HOC's callback turn on audio (play)`, () => {
 
   window.HTMLMediaElement.prototype.play = () => {};
 
-  const {_audioRef} = wrapper.instance();
+  const {_audioRef} = wrapper.instance(); // Возвращает this
 
   jest.spyOn(_audioRef.current, `play`);
 
@@ -57,6 +57,7 @@ it(`Checks that HOC's callback turn off audio (pause)`, () => {
 
   const {_audioRef} = wrapper.instance();
 
+  // Устанавливаем шпиона на метод pause в audio
   jest.spyOn(_audioRef.current, `pause`);
 
   wrapper.instance().componentDidMount();

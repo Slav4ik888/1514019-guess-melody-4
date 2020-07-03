@@ -10,7 +10,7 @@ module.exports = {
     contentBase: path.join(__dirname, `public`),
     historyApiFallback: true,
     open: false,
-    port: 3005,
+    port: 1337,
   },
   module: {
     rules: [
