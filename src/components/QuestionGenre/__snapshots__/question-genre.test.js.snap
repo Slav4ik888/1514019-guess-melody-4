@@ -7,7 +7,9 @@ exports[`<App /> рендерит <QuestionGenre />  <App /> рендерит <Q
   <h2
     className="game__title"
   >
-    Выберите инди-рок треки
+    Выберите 
+    rock
+     треки
   </h2>
   <form
     className="game__tracks"

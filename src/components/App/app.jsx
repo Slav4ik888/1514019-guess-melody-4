@@ -7,29 +7,54 @@ import QuestionArtist from '../QuestionArtist/question-artist.jsx';
 import QuestionGenre from '../QuestionGenre/question-genre.jsx';
 import {GameType} from '../../consts/consts.js';
 import GameScreen from '../GameScreen/game-screen.jsx';
-import withAudioPlayer from '../../hocs/with-audio-player.js';
+import GameOverScreen from '../GameOverScreen/game-over-screen.jsx';
+import WinScreen from '../WinScreen/win-screen.jsx';
+import withAudioPlayer from '../../hocs/with-active-player/with-active-player.js';
+import withUserAnswer from '../../hocs/with-user-answer/with-user-answers.js';
 import {ActionCreator} from '../../reducer.js';
 
-const QuestionGenreWrapped = withAudioPlayer(QuestionGenre);
+const QuestionGenreWrapped = withAudioPlayer(withUserAnswer(QuestionGenre));
 const QuestionArtistWrapped = withAudioPlayer(QuestionArtist);
 
 
 class App extends React.PureComponent {
 
   _renderGameScreen() {
-    const {errorsValue, questions,
+    const {
+      questions,
       onWelcomeButtonClick,
       onUserAnswer,
+      maxMistakes,
+      mistakes,
+      resetGame,
       step,
     } = this.props;
 
     const question = questions[step];
 
-    if (step === -1 || step >= questions.length) {
+    if (step === -1) {
       return (
         <WelcomeScreen
-          errorsValue={errorsValue}
+          errorsValue={maxMistakes}
           onWelcomeButtonClick={onWelcomeButtonClick}
+        />
+      );
+    }
+
+    if (mistakes >= maxMistakes) {
+      return (
+        <GameOverScreen
+          onReplayButtonClick={resetGame}
+        />
+      );
+    }
+
+    if (step >= questions.length) {
+      return (
+        <WinScreen
+          questionsCount={questions.length}
+          mistakesCount={mistakes}
+          onReplayButtonClick={resetGame}
         />
       );
     }
@@ -38,7 +63,9 @@ class App extends React.PureComponent {
       switch (question.type) {
         case GameType.ARTIST:
           return (
-            <GameScreen type={question.type} >
+            <GameScreen
+              type={question.type}
+            >
               <QuestionArtistWrapped
                 onAnswer={onUserAnswer}
                 question={question}
@@ -47,7 +74,9 @@ class App extends React.PureComponent {
           );
         case GameType.GENRE:
           return (
-            <GameScreen type={question.type} >
+            <GameScreen
+              type={question.type}
+            >
               <QuestionGenreWrapped
                 onAnswer={onUserAnswer}
                 question={question}
@@ -90,15 +119,20 @@ class App extends React.PureComponent {
 
 
 App.propTypes = {
-  errorsValue: PropTypes.number.isRequired,
+  maxMistakes: PropTypes.number.isRequired,
+  mistakes: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
   onWelcomeButtonClick: PropTypes.func.isRequired,
+  resetGame: PropTypes.func.isRequired,
   step: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   step: state.step,
+  maxMistakes: state.maxMistakes,
+  questions: state.questions,
+  mistakes: state.mistakes,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -108,7 +142,9 @@ const mapDispatchToProps = (dispatch) => ({
   onUserAnswer(question, answer) {
     dispatch(ActionCreator.incrementStep());
     dispatch(ActionCreator.incrementMistake(question, answer));
-
+  },
+  resetGame() {
+    dispatch(ActionCreator.resetGame());
   },
 });
 

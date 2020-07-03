@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import App from './components/App/app.jsx';
-import {Settings} from './consts/consts';
-import questions from './mocks/questions.js';
 import {reducer} from './reducer.js';
 
 const store = createStore(
@@ -14,9 +12,6 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-      <App
-        errorsValue={Settings.ERRORS_ALL}
-        questions={questions}
-      />
+      <App />
     </Provider>
     , document.getElementById(`root`));

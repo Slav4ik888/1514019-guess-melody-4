@@ -22,6 +22,7 @@ const question = {
 };
 
 const onAnswer = () => {};
+const onChange = () => {};
 const onRenderPlayer = () => {};
 
 
@@ -30,8 +31,10 @@ describe(`<App /> рендерит <QuestionGenre /> `, () => {
     const tree = renderer
       .create(<QuestionGenre
         onAnswer={onAnswer}
+        onChange={onChange}
         question={question}
         renderPlayer={onRenderPlayer}
+        userAnswers={[false, false, false, false]}
       />)
       .toJSON();
     expect(tree).toMatchSnapshot();

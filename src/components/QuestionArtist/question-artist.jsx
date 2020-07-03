@@ -15,6 +15,7 @@ class QuestionArtist extends React.PureComponent {
           <div className="game__track">
             {renderPlayer(song.src, 0)}
           </div>
+
           <form className="game__artist">
             {answers.map((answer, i) => (
               <div key={`${i}-${answer.src}`} className="artist">
@@ -41,13 +42,11 @@ QuestionArtist.propTypes = {
   onAnswer: PropTypes.func.isRequired,
   question: PropTypes.shape({
     type: PropTypes.oneOf([GameType.ARTIST, GameType.GENRE]).isRequired,
-
     answers: PropTypes.arrayOf(
         PropTypes.shape({
           artist: PropTypes.string.isRequired,
           picture: PropTypes.string.isRequired,
         })).isRequired,
-
     song: PropTypes.shape({
       artist: PropTypes.string.isRequired,
       src: PropTypes.string.isRequired,

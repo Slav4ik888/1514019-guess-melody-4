@@ -48,7 +48,6 @@ it(`Клик пользователя на ответ, должен вызват
     onAnswer={onAnswer}
     question={question}
     renderPlayer={() => {}}
-
   />);
 
   const answerInputs = screen.find(`input`);

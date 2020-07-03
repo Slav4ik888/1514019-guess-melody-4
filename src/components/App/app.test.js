@@ -53,14 +53,18 @@ describe(`Render <App />`, () => {
       .create(
           <Provider store={store}>
             <App
-              errorsValue={3}
+              maxMistakes={3}
+              mistakes={0}
               questions={questions}
               onUserAnswer={() => {}}
               onWelcomeButtonClick={() => {}}
+              resetGame={() => {}}
               step={-1}
             />
-          </Provider>)
+          </Provider>
+      )
       .toJSON();
+
     expect(tree).toMatchSnapshot();
   });
 
@@ -73,10 +77,12 @@ describe(`Render <App />`, () => {
       .create(
           <Provider store={store}>
             <App
-              errorsValue={3}
+              maxMistakes={3}
+              mistakes={0}
               questions={questions}
               onUserAnswer={() => {}}
               onWelcomeButtonClick={() => {}}
+              resetGame={() => {}}
               step={0}
             />
           </Provider>, {
@@ -97,10 +103,12 @@ describe(`Render <App />`, () => {
       .create(
           <Provider store={store}>
             <App
-              errorsValue={3}
+              maxMistakes={3}
+              mistakes={0}
               questions={questions}
               onUserAnswer={() => {}}
               onWelcomeButtonClick={() => {}}
+              resetGame={() => {}}
               step={0}
             />
           </Provider>, {
@@ -111,4 +119,59 @@ describe(`Render <App />`, () => {
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
+
+  it(`Render GameOverScreen`, () => {
+    const store = mockStore({
+      mistakes: 3,
+    });
+
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <App
+              maxMistakes={3}
+              mistakes={3}
+              questions={questions}
+              onUserAnswer={() => {}}
+              onWelcomeButtonClick={() => {}}
+              resetGame={() => {}}
+              step={1}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Render WinScreen`, () => {
+    const store = mockStore({
+      mistakes: 3,
+    });
+
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <App
+              maxMistakes={3}
+              mistakes={0}
+              questions={questions}
+              onUserAnswer={() => {}}
+              onWelcomeButtonClick={() => {}}
+              resetGame={() => {}}
+              step={3}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });
+
