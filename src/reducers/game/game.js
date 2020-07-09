@@ -1,12 +1,10 @@
-import {extend} from './utils.js';
-import {GameType} from './consts/consts.js';
-import questions from './mocks/questions.js';
+import {extend} from '../../utils.js';
+import {GameType} from '../../consts/consts.js';
 
 const initialState = {
   mistakes: 0,
   maxMistakes: 3,
   step: -1,
-  questions,
 };
 
 const ActionType = {
@@ -14,6 +12,7 @@ const ActionType = {
   INC_STEP: `INCREMENT_STEP`,
   RESET: `RESET`,
 };
+
 
 const isArtistAnswerCorrect = (question, userAnswer) => {
   return userAnswer.artist === question.song.artist;
@@ -24,6 +23,7 @@ const isGenreAnswerCorrect = (question, userAnswer) => {
     return it === (question.answers[i].genre === question.genre);
   });
 };
+
 
 const ActionCreator = {
   incrementStep: () => ({
