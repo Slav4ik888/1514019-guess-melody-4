@@ -66,13 +66,13 @@ describe(`Operation work correctly`, () => {
     const questionLoader = Operation.loadQuestions();
 
     apiMock
-      .onGet(`/questions`)
-      .reply(200, [{fake: true}]);
+      .onGet(`/questions`) // Чтобы мок на запрос `/questions`
+      .reply(200, [{fake: true}]); // вернул ответ 200 и массив таких данных [{fake: true}]
 
     return questionLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
+        expect(dispatch).toHaveBeenCalledTimes(1); // Проверяем, что dispatch был вызван
+        expect(dispatch).toHaveBeenNthCalledWith(1, { // Проверяем с какими данными этот вызов был произведён
           type: ActionType.LOAD_QUESTIONS,
           payload: [{fake: true}],
         });

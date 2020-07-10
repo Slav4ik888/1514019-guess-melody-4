@@ -31,6 +31,7 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
+
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)

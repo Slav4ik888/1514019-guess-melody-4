@@ -165,7 +165,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login(authData) {
+  login(authData) { // authData - объект {login, password}
     dispatch(UserOperation.login(authData));
   },
   onWelcomeButtonClick() {

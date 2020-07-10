@@ -4,6 +4,9 @@ const Error = {
   UNAUTHORIZED: 401
 };
 
+// Вызов createAPI будет возвращать новый инстас
+// Принимает перехватчик onUnauthorized неавторизоованного состояния
+
 export const createAPI = (onUnauthorized) => {
   const api = axios.create({
     baseURL: `https://4.react.pages.academy/guess-melody`,
@@ -19,7 +22,7 @@ export const createAPI = (onUnauthorized) => {
     const {response} = err;
 
     if (response.status === Error.UNAUTHORIZED) {
-      onUnauthorized();
+      onUnauthorized(); // Нужен, чтобы изменить данные в сторе
 
       // Бросаем ошибку, потому что нам важно прервать цепочку промисов после запроса авторизации.
       // Запрос авторизации - это особый случай и важно дать понять приложению, что запрос был неудачным.

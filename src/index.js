@@ -12,7 +12,7 @@ import {createAPI} from '../api.js';
 
 // Выносим код в отдельную функцию, чтобы развязать циклическую зависимость:
 // `store` зависит от `api`, а `api` зависит от `store`.
-const onUnauthorized = () => {
+const onUnauthorized = () => { // Если будет поймана ошибка 401 "нет авторизации", то будет вызвана эта функция
   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
 };
 
@@ -22,6 +22,8 @@ const store = createStore(
     reducer,
     // window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
     composeWithDevTools(
+        // withExtraArgument применяем чтобы можно было передать 3й аргумент api
+        // потому что thunk принимает только 2 аргумента
         applyMiddleware(thunk.withExtraArgument(api))
     )
 );

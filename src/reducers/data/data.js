@@ -17,6 +17,7 @@ const ActionCreator = {
   }
 };
 
+// Operation это асинхронный ActionCreator
 const Operation = {
   loadQuestions: () => (dispatch, getState, api) => {
     return api.get(`/questions`)
