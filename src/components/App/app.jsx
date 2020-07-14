@@ -17,7 +17,7 @@ import {ActionCreator} from '../../reducers/game/game.js';
 import {getQuestions} from '../../reducers/data/selectors.js';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {Operation as UserOperation} from '../../reducers/user/user.js';
-import AuthScreen from "../auth-screen/AuthScreen.jsx";
+import AuthScreen from '../AuthScreen/auth-screen.jsx';
 
 const QuestionGenreWrapped = withAudioPlayer(withUserAnswer(QuestionGenre));
 const QuestionArtistWrapped = withAudioPlayer(QuestionArtist);
